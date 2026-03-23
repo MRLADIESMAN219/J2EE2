@@ -1,0 +1,13 @@
+Da bo sung theo yeu cau bai 7 va file Word kiem tra 2:
+
+1. Tim kiem san pham theo ten (keyword).
+2. Phan trang 5 san pham/trang, co Next/Previous.
+3. Sap xep gia tang dan / giam dan.
+4. Loc theo category.
+5. Them vao gio hang, luu session, co quantity.
+6. Trang gio hang hien thi ten, gia, so luong, tong tien.
+7. Dat hang: tao Order, luu OrderDetail, tinh tong tien.
+
+Luu y:
+- Do moi truong hien tai khong cho phep tai dependency Maven tu Internet, project khong the build kiem tra bang Maven wrapper trong container nay.
+- Ban mo project va chay lai Maven/NetBeans tren may cua ban de tai dependency va run ung dung.

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{_layout :: head(~{::title})}">
+    <title>Đặt hàng thành công</title>
+</head>
+<body>
+<div th:replace="~{_layout :: navbar(${cartCount})}"></div>
+
+<div class="container mt-4">
+    <div class="card shadow-sm" th:if="${order != null}">
+        <div class="card-header bg-success text-white">
+            <h3 class="mb-0">Đặt hàng thành công</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Mã đơn hàng:</strong> <span th:text="${order.id}"></span></p>
+            <p><strong>Ngày đặt:</strong> <span th:text="${#temporals.format(order.orderDate, 'dd/MM/yyyy HH:mm:ss')}"></span></p>
+            <p><strong>Tổng tiền:</strong> <span th:text="${#numbers.formatDecimal(order.totalAmount, 0, 'COMMA', 0, 'POINT')} + ' đ'"></span></p>
+
+            <h5 class="mt-4">Chi tiết đơn hàng</h5>
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="detail : ${order.orderDetails}">
+                    <td th:text="${detail.product.name}"></td>
+                    <td th:text="${#numbers.formatDecimal(detail.price, 0, 'COMMA', 0, 'POINT')} + ' đ'"></td>
+                    <td th:text="${detail.quantity}"></td>
+                    <td th:text="${#numbers.formatDecimal(detail.subtotal, 0, 'COMMA', 0, 'POINT')} + ' đ'"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <a th:href="@{/products}" class="btn btn-primary">Quay lại danh sách sản phẩm</a>
+        </div>
+    </div>
+
+    <div class="alert alert-warning" th:if="${order == null}">
+        Không tìm thấy đơn hàng.
+    </div>
+</div>
+
+<div th:replace="~{_layout :: footer}"></div>
+</body>
+</html>
